@@ -1,0 +1,16 @@
+[Unit]
+Description=Mesh node daemon
+Documentation=https://github.com/projectmesh-io/mesh
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/mesh node start
+Restart=always
+RestartSec=5
+# Give in-flight work a chance to drain on stop/restart.
+TimeoutStopSec=30
+
+[Install]
+WantedBy=default.target
